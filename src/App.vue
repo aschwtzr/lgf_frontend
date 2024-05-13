@@ -1,14 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 const availableReads = ['stm', 'opz4', 'pcba']
-const selectedValue = ref('')
+const selectedValue = ref('stm')
 const readResponse = ref('readResponse')
 
 // const API_URL = 'http://localhost:3000'
 
 const requestRead = async function () {
   console.log('Requesting read for', selectedValue.value)
-  const serviceResponse = await fetch(`${process.env.API_URL}/reading`, {
+  const serviceResponse = await fetch(`${import.meta.env.VITE_API_URL}/reading`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const requestRead = async function () {
     </select>
   </div>
   <button @click="requestRead">Request Read</button>
-  <div class="pt-4 font-bold text-green-900">{{ readResponse }}</div>
+  <div class="pt-4 font-bold text-green-600">{{ readResponse }}</div>
 </template>
 
 <style scoped>
